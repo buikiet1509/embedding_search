@@ -37,18 +37,18 @@ def _search(query: str, database: FAISS) -> list[tuple]:
 
     return results
 
-def _index_is_stale(corpus_dir: str, index_path: str) -> bool:  # [FIX #1] new helper: decide whether the saved index must be rebuilt
-    index_file = os.path.join(index_path, "index.faiss")  # [FIX #1] the file whose timestamp marks when the index was built
-    if not os.path.exists(index_file):  # [FIX #1] no index yet -> must build
-        return True  # [FIX #1]
-    index_mtime = os.path.getmtime(index_file)  # [FIX #1] time the index was last saved
-    for root, _, files in os.walk(corpus_dir):  # [FIX #1] scan corpus folder and subfolders (same scope as glob="**/*.txt")
-        if os.path.getmtime(root) > index_mtime:  # [FIX #1] folder mtime changes when a file is added/removed/renamed
-            return True  # [FIX #1]
-        for name in files:  # [FIX #1]
-            if name.endswith(".txt") and os.path.getmtime(os.path.join(root, name)) > index_mtime:  # [FIX #1] a .txt edited after the index was built
-                return True  # [FIX #1]
-    return False  # [FIX #1] nothing changed since the index was built -> safe to load
+def _index_is_stale(corpus_dir: str, index_path: str) -> bool:
+    index_file = os.path.join(index_path, "index.faiss")
+    if not os.path.exists(index_file):
+        return True
+    index_mtime = os.path.getmtime(index_file)
+    for root, _, files in os.walk(corpus_dir):
+        if os.path.getmtime(root) > index_mtime:
+            return True
+        for name in files:
+            if name.endswith(".txt") and os.path.getmtime(os.path.join(root, name)) > index_mtime:
+                return True
+    return False
 
 def _index(data: list, embeddings: HuggingFaceEmbeddings) -> FAISS:
     database = FAISS.from_documents(
@@ -64,8 +64,8 @@ def main():
         model_name="BAAI/bge-m3", 
         encode_kwargs={"normalize_embeddings": True}
     )
-    if _index_is_stale(CORPUS_DIR, FAISS_INDEX_PATH):  # [FIX #1] was `not os.path.exists(FAISS_INDEX_PATH)`, which never rebuilt after corpus changes
-        print("Corpus changed or index missing -> rebuilding FAISS index...")  # [FIX #1] tell the user a rebuild is happening
+    if _index_is_stale(CORPUS_DIR, FAISS_INDEX_PATH):
+        print("Corpus changed or index missing -> rebuilding FAISS index...")
         data = load_and_split_text(CORPUS_DIR)
         database = _index(data, embeddings)
     else:
