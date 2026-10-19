@@ -1,0 +1,252 @@
+[
+  {
+    "id": "ms-01",
+    "query": "When did Mississippi become a state?",
+    "lang": "en",
+    "type": "keyword",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["became the 20th state on December 10, 1817"],
+    "answer": "December 10, 1817 (the 20th state)."
+  },
+  {
+    "id": "ms-02",
+    "query": "Which city served as Mississippi's capital before Jackson?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["Natchez as its first capital"],
+    "answer": "Natchez; Jackson took over in 1822."
+  },
+  {
+    "id": "ms-03",
+    "query": "How did Grant's campaign along the river end in 1863?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["surrender of Vicksburg on July 4, 1863"],
+    "answer": "With the surrender of Vicksburg on July 4, 1863."
+  },
+  {
+    "id": "ms-04",
+    "query": "Những nghệ sĩ nhạc blues nổi tiếng nào xuất thân từ vùng Delta của Mississippi?",
+    "lang": "vi",
+    "type": "cross_lingual",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["Muddy Waters, B.B. King, and Bo Diddley"],
+    "answer": "Muddy Waters, B.B. King và Bo Diddley."
+  },
+  {
+    "id": "ms-05",
+    "query": "Who was the first Black student to integrate Ole Miss, and when?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["James Meredith integrated the University of Mississippi"],
+    "answer": "James Meredith, in 1962, amid a deadly riot."
+  },
+  {
+    "id": "ms-06",
+    "query": "What effect did the 1890 constitution have on Black voters?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["datafile.txt"],
+    "evidence": ["cut Black voting by about 90 percent"],
+    "answer": "Its poll tax cut Black voting by about 90 percent."
+  },
+  {
+    "id": "ms-07",
+    "query": "What is the population of Mississippi today?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "ms-08",
+    "query": "Who is the current governor of Mississippi?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "vn-01",
+    "query": "What is the highest mountain in Vietnam?",
+    "lang": "en",
+    "type": "keyword",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["Fansipan, at 3,143 metres"],
+    "answer": "Fansipan, 3,143 metres."
+  },
+  {
+    "id": "vn-02",
+    "query": "Thủ đô của Việt Nam là thành phố nào?",
+    "lang": "vi",
+    "type": "cross_lingual",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["The capital is Hanoi"],
+    "answer": "Hà Nội."
+  },
+  {
+    "id": "vn-03",
+    "query": "Which battle forced the French out of Indochina in 1954?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["Battle of Điện Biên Phủ, which ended on 7 May 1954"],
+    "answer": "The Battle of Điện Biên Phủ, ending on 7 May 1954."
+  },
+  {
+    "id": "vn-04",
+    "query": "What trick did Ngô Quyền use to destroy the enemy fleet in 938?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["planting iron-tipped stakes in the riverbed"],
+    "answer": "He planted iron-tipped stakes in the Bạch Đằng riverbed that impaled ships at low tide."
+  },
+  {
+    "id": "vn-05",
+    "query": "Tổng thống Mỹ nào đã ăn bún chả ở Hà Nội?",
+    "lang": "vi",
+    "type": "cross_lingual",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["Barack Obama ate it with Anthony Bourdain"],
+    "answer": "Barack Obama, cùng Anthony Bourdain, năm 2016."
+  },
+  {
+    "id": "vn-06",
+    "query": "What were the 1986 economic reforms called?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["launched Đổi Mới"],
+    "answer": "Đổi Mới (Renovation)."
+  },
+  {
+    "id": "vn-07",
+    "query": "Sau đợt sắp xếp hành chính năm 2025, Việt Nam còn bao nhiêu tỉnh thành?",
+    "lang": "vi",
+    "type": "cross_lingual",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["reduced to 34", "from 63 to 34"],
+    "answer": "34 đơn vị cấp tỉnh (28 tỉnh và 6 thành phố trực thuộc trung ương)."
+  },
+  {
+    "id": "vn-08",
+    "query": "Where is the largest cave passage in the world?",
+    "lang": "en",
+    "type": "paraphrase",
+    "answerable": true,
+    "sources": ["vietnam_data.txt"],
+    "evidence": ["largest known cave passage in the world"],
+    "answer": "Hang Sơn Đoòng, in Phong Nha-Kẻ Bàng National Park, Quảng Bình."
+  },
+  {
+    "id": "vn-09",
+    "query": "What was Vietnam's GDP in 2025?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "vn-10",
+    "query": "What is the official language of Laos?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "vn-11",
+    "query": "How many tones does the Thai language have?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "vn-12",
+    "query": "Công thức nấu phở bò tại nhà gồm những bước nào?",
+    "lang": "vi",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "x-01",
+    "query": "What crop drove the economy of Mississippi, and which region is called Vietnam's rice bowl?",
+    "lang": "en",
+    "type": "multi_source",
+    "answerable": true,
+    "sources": ["datafile.txt", "vietnam_data.txt"],
+    "evidence": ["profits of cotton", "Vietnam's \"rice bowl\""],
+    "answer": "Cotton in Mississippi; the Mekong Delta is Vietnam's rice bowl."
+  },
+  {
+    "id": "off-01",
+    "query": "Who won the 2022 FIFA World Cup?",
+    "lang": "en",
+    "type": "near_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "off-02",
+    "query": "How do I reset my iPhone password?",
+    "lang": "en",
+    "type": "off_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "off-03",
+    "query": "Explain how the BM25 ranking function works.",
+    "lang": "en",
+    "type": "off_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  },
+  {
+    "id": "off-04",
+    "query": "Thời tiết ở Paris vào tháng 12 như thế nào?",
+    "lang": "vi",
+    "type": "off_topic",
+    "answerable": false,
+    "sources": [],
+    "evidence": [],
+    "answer": null
+  }
+]
