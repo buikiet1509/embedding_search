@@ -1,21 +1,9 @@
 import os
- 
-from langchain_community.vectorstores import FAISS
- 
-from config import TOP_K
+
 from index import get_database
- 
- 
-def search(query: str, database: FAISS, k: int = TOP_K) -> list:
-    results = database.similarity_search_with_score(query, k=k)
-    for rank, (doc, score) in enumerate(results, start=1):
-        source = os.path.basename(doc.metadata.get("source", "N/A"))
-        print(f"Rank {rank} | score = {score:.3f} | source = {source}")
-        print(doc.page_content, "\n")
-    return results
- 
- 
-def main():
+from rag_chain import answer_question 
+
+def main(DEBUG=True):
     database = get_database()
  
     while True:
@@ -25,6 +13,7 @@ def main():
         if query == "":
             print("Query cannot be empty. Please enter a valid query.")
             continue
-        search(query, database)
+        answer = answer_question(query, database)
+        print(answer["answer"])
 if __name__ == "__main__":
     main()
