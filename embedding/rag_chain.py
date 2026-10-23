@@ -12,7 +12,6 @@ SYSTEM_PROMPT = (
     "2. If the context does not contain the answer, reply with exactly one sentence: "
     "\"No information found in the documents.\"\n"
     "3. After each point, cite the source file name in square brackets, e.g. [datafile.txt].\n"
-    "4. Keep answers concise, in the same language as the question."
 )
 PROMPT = ChatPromptTemplate.from_messages([
     ("system", SYSTEM_PROMPT),
@@ -21,7 +20,7 @@ PROMPT = ChatPromptTemplate.from_messages([
 
 LLM = ChatOllama(model=LLM_MODEL, temperature=0)
 
-def format_docs(docs: str) -> str:
+def format_docs(docs: str) -> list:
     part=[]
     for doc in docs:
         source = os.path.basename(doc.metadata.get("source", "unknown"))
@@ -35,5 +34,5 @@ def answer_question(query: str, database) -> dict:
     messages = PROMPT.invoke({"context": context,              # 3. fill prompt
                               "question": query})
     response = LLM.invoke(messages)                            # 4. call LLM
-    return {"answer": response.content}
+    return {"answer": response.content, "docs": docs}
 
