@@ -4,7 +4,7 @@ import unicodedata
 from config import TESTSET_PATH, TOP_K
 from index import get_database
  
-# --- Bước 1-2: đọc testset và chia nhóm ---
+# --- Steps 1-2: load the testset and split into groups ---
 with open(TESTSET_PATH, "r", encoding="utf-8") as file:
     testset = json.load(file)
  
@@ -53,9 +53,9 @@ for run in runs:
 hit_at_k = sum(hits) / len(hits)
 mrr = sum(rrs) / len(rrs)
 
-print(f"\n=== Retrieval ({len(hits)} câu có đáp án, k={TOP_K}) ===")
+print(f"\n=== Retrieval ({len(hits)} answerable queries, k={TOP_K}) ===")
 print(f"Hit@{TOP_K}: {hit_at_k:.3f}   MRR: {mrr:.3f}")
 
-print(f"\n=== Câu bị trượt ({len(misses)}) ===")
+print(f"\n=== Missed queries ({len(misses)}) ===")
 for item in misses:
     print(f"  {item['id']:<7} | {item['type']:<13} | {item['query']}")

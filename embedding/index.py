@@ -9,7 +9,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
 
 def index_is_stale(corpus_dir: str, index_path: str) -> bool:
-    """True nếu cần build lại index."""
+    """True if the index needs to be rebuilt."""
     index_file = os.path.join(index_path, "index.faiss")
     config_file = os.path.join(index_path, "config.json")
  
@@ -33,7 +33,7 @@ def index_is_stale(corpus_dir: str, index_path: str) -> bool:
  
  
 def build_index(chunks: list, embeddings, index_path: str) -> FAISS:
-    """Chunk -> vector -> FAISS, lưu xuống đĩa và dán nhãn config.json."""
+    """Chunk -> vector -> FAISS, save to disk and stamp config.json."""
     database = FAISS.from_documents(
         chunks,
         embeddings,
@@ -58,12 +58,12 @@ def load_index(embeddings, index_path: str) -> FAISS:
  
  
 def get_database(corpus_dir: str = CORPUS_DIR, index_path: str = FAISS_INDEX_PATH) -> FAISS:
-    """Điểm vào duy nhất: build nếu cần, ngược lại load. main.py và evaluation.py đều gọi hàm này."""
+    """Single entry point: build if needed, otherwise load. Both main.py and evaluation.py call this."""
     embeddings = get_embeddings()
  
     if index_is_stale(corpus_dir, index_path):
-        print("Corpus/config thay đổi hoặc chưa có index -> build lại FAISS index...")
-        processor = TextProcessor(corpus_dir)   # chỉ tạo khi thật sự cần build
+        print("Corpus/config changed or no index found -> rebuilding FAISS index...")
+        processor = TextProcessor(corpus_dir)   # only created when a build is actually needed
         chunks = processor.load_and_split_text()
         return build_index(chunks, embeddings, index_path)
  
