@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Embedding Search RAG Chatbot",
+    "locale": "en",
+    "output": ".archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/buikiet1509/embedding_search.git",
+      "provider": "github",
+      "revision": "3a3afacaa50760a0917e2129b4aca826628680fc"
+    }
+  },
+  "components": [
+    { "id": "user", "type": "external", "label": "User", "sublabel": "terminal", "pos": [40, 40], "size": [120, 60] },
+    { "id": "cli", "type": "frontend", "label": "main.py", "sublabel": "chat loop, 'stop' exits", "pos": [240, 38], "size": [150, 64],
+      "sources": [{ "path": "embedding/main.py", "line": 6, "end_line": 17 }] },
+    { "id": "rag", "type": "backend", "label": "answer_question", "sublabel": "rag_chain.py", "pos": [540, 38], "size": [160, 64], "tag": "retrieve > prompt > LLM",
+      "sources": [{ "path": "embedding/rag_chain.py", "line": 31, "end_line": 37 }, { "path": "embedding/rag_chain.py", "line": 8, "end_line": 19, "label": "system prompt" }] },
+    { "id": "llm", "type": "external", "label": "Ollama", "sublabel": "qwen2.5:7b, temp 0", "pos": [850, 38], "size": [150, 64],
+      "sources": [{ "path": "embedding/rag_chain.py", "line": 21 }, { "path": "embedding/config.py", "line": 12 }] },
+    { "id": "getdb", "type": "backend", "label": "get_database", "sublabel": "index.py: build or load", "pos": [240, 230], "size": [150, 64], "tag": "index_is_stale?",
+      "sources": [{ "path": "embedding/index.py", "line": 60, "end_line": 70 }, { "path": "embedding/index.py", "line": 11, "end_line": 32, "label": "staleness check" }] },
+    { "id": "faiss", "type": "database", "label": "FAISS index", "sublabel": "faiss_index/ + config.json", "pos": [540, 230], "size": [160, 64], "tag": "inner product",
+      "sources": [{ "path": "embedding/index.py", "line": 35, "end_line": 48, "label": "build_index" }, { "path": "embedding/index.py", "line": 51, "end_line": 57, "label": "load_index" }] },
+    { "id": "split", "type": "backend", "label": "TextProcessor", "sublabel": "128 tokens, 20 overlap", "pos": [240, 420], "size": [150, 64],
+      "sources": [{ "path": "embedding/load_and_split_text.py", "line": 7, "end_line": 27 }, { "path": "embedding/config.py", "line": 3, "end_line": 10 }] },
+    { "id": "corpus", "type": "database", "label": "corpus_file/", "sublabel": "*.txt (EN + VI)", "pos": [20, 420], "size": [130, 64],
+      "sources": [{ "path": "embedding/config.py", "line": 17 }] },
+    { "id": "embed", "type": "cloud", "label": "BAAI/bge-m3", "sublabel": "HuggingFace, normalized", "pos": [540, 420], "size": [160, 64],
+      "sources": [{ "path": "embedding/embedding_model.py", "line": 4, "end_line": 8 }] }
+  ],
+  "connections": [
+    { "id": "ask", "from": "user", "to": "cli", "label": "question", "variant": "emphasis" },
+    { "id": "call-rag", "from": "cli", "to": "rag", "label": "answer_question()", "variant": "emphasis" },
+    { "id": "call-llm", "from": "rag", "to": "llm", "label": "prompt + context", "variant": "emphasis" },
+    { "id": "startup", "from": "cli", "to": "getdb", "label": "on startup" },
+    { "id": "retrieve", "from": "rag", "to": "faiss", "label": "similarity_search k=3" },
+    { "id": "build-load", "from": "getdb", "to": "faiss", "label": "build or load" },
+    { "id": "rebuild", "from": "getdb", "to": "split", "label": "if stale", "variant": "dashed" },
+    { "id": "read-corpus", "from": "split", "to": "corpus", "label": "read *.txt" },
+    { "id": "vectors", "from": "faiss", "to": "embed", "label": "embed chunks + query" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Question path", "items": ["main.py reads a question and calls answer_question", "FAISS returns the top 3 chunks, each tagged with its source file", "Ollama answers only from that context and cites [file.txt]"] },
+    { "dot": "amber", "title": "When the index is rebuilt", "items": ["index.faiss or config.json is missing", "saved config.json differs from CONFIG", "a .txt file or folder in corpus_file/ is newer than the index", "Otherwise the saved index is loaded from disk"] },
+    { "dot": "violet", "title": "Prompt rules", "items": ["Use only the CONTEXT section", "No answer in context: 'No information found in the documents.'", "Cite the source file after each point"] },
+    { "dot": "slate", "title": "Not on the chat path", "items": ["evaluation.py scores retrieval (Hit@3, MRR) with testset.json", "build_or_load_data.py is old code and not imported"] }
+  ]
+}
