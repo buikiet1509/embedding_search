@@ -4,6 +4,7 @@ from transformers import AutoTokenizer
 
 from config import CONFIG
 
+
 class TextProcessor:
     def __init__(self, corpus_dir: str):
         self.corpus_dir = corpus_dir

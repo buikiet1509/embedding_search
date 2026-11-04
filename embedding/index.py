@@ -1,12 +1,13 @@
-import os
 import json
-
-from config import CONFIG, CORPUS_DIR, FAISS_INDEX_PATH
-from embedding_model import get_embeddings
-from load_and_split_text import TextProcessor
+import os
 
 from langchain_community.vectorstores import FAISS
 from langchain_community.vectorstores.utils import DistanceStrategy
+
+from config import CONFIG, CORPUS_DIR, FAISS_INDEX_PATH
+from models import get_embeddings
+from load_and_split_text import TextProcessor
+
 
 def index_is_stale(corpus_dir: str, index_path: str) -> bool:
     """True if the index needs to be rebuilt."""

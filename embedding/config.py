@@ -11,8 +11,10 @@ CONFIG = {
 
 LLM_MODEL = "qwen2.5:7b" 
 
-
+SCORE_THRESHOLD = 0.42
 TOP_K = 3 
+CANDIDATE_K = 10   # chunks each retriever (FAISS, BM25) contributes before fusion
+RRF_K = 60         # Reciprocal Rank Fusion constant
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CORPUS_DIR = os.path.normpath(os.path.join(BASE_DIR, "..", "corpus_file"))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "faiss_index")
