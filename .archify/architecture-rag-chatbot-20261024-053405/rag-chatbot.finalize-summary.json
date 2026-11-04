@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "skipped",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/candidate.json",
+    "sha256": "f5a39863aa1513ed266a001b054de34729ecf8695c0f3ebd2ee2a0783ea53899",
+    "bytes": 4601
+  },
+  "artifact": {
+    "path": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.html",
+    "sha256": "ede8426f870cb622d75596ce299e4a6df70ee6572845237f87a7635d6c361aa4",
+    "bytes": 828499
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "skipped"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/chrome-unavailable",
+      "severity": "warning",
+      "message": "No supported browser found. Install Chrome/Chromium (or Microsoft Edge), or set ARCHIFY_CHROME to its executable path.",
+      "subject": {
+        "artifact": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.html"
+      },
+      "evidence": {
+        "executable": null
+      },
+      "supportedFixes": [
+        "set ARCHIFY_CHROME to a Chrome/Chromium executable (or Microsoft Edge) and rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 1,
+    "shown": 1,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.finalize.json",
+    "summaryReceipt": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.finalize-summary.json",
+    "browserCheckReceipt": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T10:34:05.706Z",
+    "source": "network",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 458,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  }
+}

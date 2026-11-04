@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b7aa1654-9c90-41fd-906f-b0971d514f91",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/candidate.json",
+  "output": "/Users/kiettacbui/Downloads/SearchAI/call_llms_api/embedding_search/.archify/architecture-rag-chatbot-20261024-053405/rag-chatbot.html",
+  "specification": {
+    "sha256": "f5a39863aa1513ed266a001b054de34729ecf8695c0f3ebd2ee2a0783ea53899",
+    "bytes": 4601
+  },
+  "artifact": {
+    "sha256": "ede8426f870cb622d75596ce299e4a6df70ee6572845237f87a7635d6c361aa4",
+    "bytes": 828499
+  }
+}
